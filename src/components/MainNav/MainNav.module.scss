@@ -1,0 +1,9 @@
+.mainNavList {
+  display: flex;
+}
+.mainNavItem {
+  margin-right: 10px;
+  &:last-child {
+    margin-right: 0;
+  }
+}
