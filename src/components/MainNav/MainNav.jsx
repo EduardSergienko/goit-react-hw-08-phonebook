@@ -1,10 +1,14 @@
 import styles from './MainNav.module.scss';
-
+import { NavLink } from 'react-router-dom';
 export function MainNav() {
   return (
     <ul className={styles.mainNavList}>
-      <li className={styles.mainNavItem}>Home</li>
-      <li className={styles.mainNavItem}>Contacts</li>
+      <NavLink to="/" className={styles.mainNavItem}>
+        Home
+      </NavLink>
+      <NavLink to="contacts" className={styles.mainNavItem}>
+        Contacts
+      </NavLink>
     </ul>
   );
 }

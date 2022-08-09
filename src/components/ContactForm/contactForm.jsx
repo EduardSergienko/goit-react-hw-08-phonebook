@@ -3,6 +3,7 @@ import styles from './contactForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { addContacts } from 'redux/contacts/contactsOperations';
 import { getContacts } from 'redux/store';
+
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
