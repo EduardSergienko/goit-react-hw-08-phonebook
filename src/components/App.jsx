@@ -10,16 +10,15 @@ import { Contacts } from './Contacts/Contacts';
 import { Home } from './Home/Home';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { LoginForm } from './LogInForm/LogInForm';
-
+import { getIsLoggedIn } from 'redux/auth/authSelectors';
 export default function App() {
   const isLoading = useSelector(getIsLoading);
-
+  const isLoggedIn = useSelector(getIsLoggedIn);
   return (
     <>
       <AppBar>
         <MainNav />
-        <AuthNav />
-        <UserMenu />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </AppBar>
       <Routes>
         <Route path="/" element={<Home />} />

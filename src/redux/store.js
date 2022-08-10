@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { contactsSlice } from './contacts/contactsSlice';
-
+import { authSlice } from './auth/authSlice';
 export const store = configureStore({
   reducer: {
     contacts: contactsSlice.reducer,
+    auth: authSlice.reducer,
   },
   devTools: process.env.NODE_ENV === 'development',
   middleware: getDefaultMiddleware => getDefaultMiddleware({}),
