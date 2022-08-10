@@ -12,6 +12,7 @@ export const ContactList = () => {
   const filteredContactList = items.filter(contact =>
     contact.name.toLowerCase().includes(toLower)
   );
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
@@ -21,12 +22,12 @@ export const ContactList = () => {
     <>
       {filteredContactList.length > 0 ? (
         <ul className={styles.contactList}>
-          {filteredContactList.map(({ id, name, phone }) => {
+          {filteredContactList.map(({ id, name, number }) => {
             return (
               <ContactItem
                 key={id}
                 name={name}
-                number={phone}
+                number={number}
                 onDeleteBtnClick={() => dispatch(deleteContacts(id))}
               />
             );
