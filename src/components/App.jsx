@@ -11,9 +11,17 @@ import { Home } from './Home/Home';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { LoginForm } from './LogInForm/LogInForm';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 export default function App() {
   const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <AppBar>
