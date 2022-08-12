@@ -36,4 +36,5 @@ export const store = configureStore({
 export const getValue = state => state.contacts.filter;
 export const getContacts = state => state.contacts.items;
 export const getIsLoading = state => state.contacts.isloading;
+export const getIsRefreshed = state => state.auth.isRefreshed;
 export const persistor = persistStore(store);

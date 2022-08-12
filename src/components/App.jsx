@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { getIsLoading } from 'redux/store';
+import { getIsLoading, getIsRefreshed } from 'redux/store';
 import { useSelector } from 'react-redux';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { AppBar } from './AppBar/AppBar';
@@ -13,57 +13,61 @@ import { LoginForm } from './LogInForm/LogInForm';
 import PrivateRoute from './PrivateRoures/PrivateRoutes';
 import PublicRoute from './PublicRoutes/PublicRoutes';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
+
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 export default function App() {
   const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const isRefreshed = useSelector(getIsRefreshed);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <>
-      <AppBar>
-        <MainNav />
-        {isLoggedIn ? <UserMenu /> : <AuthNav />}
-      </AppBar>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute>
-              <Contacts />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute restricted>
-              <RegisterForm />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/login"
-          element={
-            <PublicRoute restricted>
-              <LoginForm />
-            </PublicRoute>
-          }
-        />
-      </Routes>
+    !isRefreshed && (
+      <>
+        <AppBar>
+          <MainNav />
+          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        </AppBar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <Contacts />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted>
+                <RegisterForm />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <LoginForm />
+              </PublicRoute>
+            }
+          />
+        </Routes>
 
-      {isLoading
-        ? Loading.circle({
-            svgColor: '#3152f5',
-            backgroundColor: 'rgba(0,0,0,0.2)',
-          })
-        : Loading.remove()}
-    </>
+        {isLoading
+          ? Loading.circle({
+              svgColor: '#3152f5',
+              backgroundColor: 'rgba(0,0,0,0.2)',
+            })
+          : Loading.remove()}
+      </>
+    )
   );
 }
