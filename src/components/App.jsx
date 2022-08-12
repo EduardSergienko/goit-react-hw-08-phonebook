@@ -10,6 +10,8 @@ import { Contacts } from './Contacts/Contacts';
 import { Home } from './Home/Home';
 import { RegisterForm } from './RegisterForm/RegisterForm';
 import { LoginForm } from './LogInForm/LogInForm';
+import PrivateRoute from './PrivateRoures/PrivateRoutes';
+import PublicRoute from './PublicRoutes/PublicRoutes';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
@@ -30,9 +32,30 @@ export default function App() {
       </AppBar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/contacts" element={<Contacts />} />
-        <Route path="/singup" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute>
+              <Contacts />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute restricted>
+              <RegisterForm />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute restricted>
+              <LoginForm />
+            </PublicRoute>
+          }
+        />
       </Routes>
 
       {isLoading

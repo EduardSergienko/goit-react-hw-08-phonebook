@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 export function AuthNav() {
   return (
     <ul className={styles.authNavList}>
-      <NavLink to="/singup" className={styles.authNavItem}>
+      <NavLink to="/register" className={styles.authNavItem}>
         Register
       </NavLink>
       <NavLink to="/login" className={styles.authNavItem}>
