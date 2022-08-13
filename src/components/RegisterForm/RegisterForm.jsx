@@ -1,4 +1,5 @@
 import TextField from '@mui/material/TextField';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux/es/exports';
 import { registerUser } from 'redux/auth/authOperations';
@@ -8,6 +9,7 @@ export function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -28,6 +30,11 @@ export function RegisterForm() {
   };
   const onFormSubmit = e => {
     e.preventDefault();
+    if (name && email && password === '') {
+      console.log(name);
+      console.log(email);
+      return Notify.warning('Please, fill in all the fields ');
+    }
     dispatch(registerUser({ name, email, password }));
     setName('');
     setEmail('');
@@ -81,7 +88,14 @@ export function RegisterForm() {
         value={password}
         onChange={handleChange}
       />
-      <Button type="submit" variant="text">
+      <Button
+        sx={{
+          fontWeight: 600,
+          color: 'cornflowerblue',
+        }}
+        type="submit"
+        variant="text"
+      >
         Sign Up
       </Button>
     </Box>

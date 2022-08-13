@@ -12,25 +12,31 @@ const token = {
   },
 };
 
-export const registerUser = createAsyncThunk('auth/register', async newUser => {
-  try {
-    const { data } = await axios.post(`${BASE_URL}/users/signup`, newUser);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const registerUser = createAsyncThunk(
+  'auth/register',
+  async (newUser, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`${BASE_URL}/users/signup`, newUser);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue();
+    }
   }
-});
+);
 
-export const logInUser = createAsyncThunk('auth/login', async userData => {
-  try {
-    const { data } = await axios.post(`${BASE_URL}/users/login`, userData);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    console.log(error);
+export const logInUser = createAsyncThunk(
+  'auth/login',
+  async (userData, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`${BASE_URL}/users/login`, userData);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return rejectWithValue();
+    }
   }
-});
+);
 
 export const logOutUser = createAsyncThunk('auth/logout', async () => {
   try {
