@@ -1,6 +1,9 @@
 .appBar {
   display: flex;
   justify-content: space-around;
-  padding-top: 20px;
+
   align-items: center;
+  height: 50px;
+  background-color: cornflowerblue;
+  box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
 }

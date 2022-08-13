@@ -2,8 +2,20 @@
   display: flex;
 }
 .authNavItem {
-  margin-right: 10px;
-  &:last-child {
-    margin-right: 0;
-  }
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  // margin-right: 10px;
+  // &:last-child {
+  //   margin-right: 0;
+  // }
+}
+.activeLink {
+  font-weight: 600;
+  color: #afc1e0;
+  text-decoration: none;
+  // margin-right: 10px;
+  // &:last-child {
+  //   margin-right: 0;
+  // }
 }
