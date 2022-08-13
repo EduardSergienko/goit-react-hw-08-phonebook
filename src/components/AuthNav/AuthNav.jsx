@@ -11,7 +11,7 @@ export function AuthNav() {
         sx={{
           color: 'white',
           fontWeight: 600,
-          border: 1,
+
           padding: '3px 8px',
 
           marginRight: 3,
@@ -24,14 +24,14 @@ export function AuthNav() {
             isActive ? styles.activeLink : styles.authNavItem
           }
         >
-          Register
+          sign up
         </NavLink>
       </Button>
       <Button
         sx={{
           color: 'white',
           fontWeight: 600,
-          border: 1,
+
           padding: '3px 8px',
         }}
         variant="text"

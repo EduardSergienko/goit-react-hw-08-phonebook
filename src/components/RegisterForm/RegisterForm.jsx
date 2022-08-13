@@ -82,7 +82,7 @@ export function RegisterForm() {
         onChange={handleChange}
       />
       <Button type="submit" variant="text">
-        Sing Up
+        Sign Up
       </Button>
     </Box>
   );
