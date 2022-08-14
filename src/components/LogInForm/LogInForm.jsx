@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import { logInUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { Notify } from 'notiflix';
-export function LoginForm() {
+export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();

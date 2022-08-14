@@ -6,17 +6,25 @@ import { AppBar } from './AppBar/AppBar';
 import { MainNav } from './MainNav/MainNav';
 import { AuthNav } from './AuthNav/AuthNav';
 import { UserMenu } from './UserMenu/UserMenu';
-import { Contacts } from './Contacts/Contacts';
-import { Home } from './Home/Home';
-import { RegisterForm } from './RegisterForm/RegisterForm';
-import { LoginForm } from './LogInForm/LogInForm';
-import PrivateRoute from './PrivateRoures/PrivateRoutes';
-import PublicRoute from './PublicRoutes/PublicRoutes';
+import Contacts from './Contacts/Contacts';
+import RegisterForm from './RegisterForm/RegisterForm';
+import LoginForm from './LogInForm/LogInForm';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
-
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+// import PrivateRoute from './PrivateRoures/PrivateRoutes';
+// import PublicRoute from './PublicRoutes/PublicRoutes';
+// import Home from './Home/Home';
+import { lazy, Suspense } from 'react';
+const Home = lazy(() => import('./Home/Home' /* webpackChunkName: "Home" */));
+const PrivateRoute = lazy(() =>
+  import('./PrivateRoures/PrivateRoutes' /* webpackChunkName: "PrivateRoute" */)
+);
+const PublicRoute = lazy(() =>
+  import('./PublicRoutes/PublicRoutes' /* webpackChunkName: "PublicRoute" */)
+);
+
 export default function App() {
   const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -33,34 +41,35 @@ export default function App() {
           <MainNav />
           {isLoggedIn ? <UserMenu /> : <AuthNav />}
         </AppBar>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/contacts"
-            element={
-              <PrivateRoute>
-                <Contacts />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute restricted>
-                <RegisterForm />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted>
-                <LoginForm />
-              </PublicRoute>
-            }
-          />
-        </Routes>
-
+        <Suspense>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <Contacts />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginForm />
+                </PublicRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
         {isLoading
           ? Loading.circle({
               svgColor: '#3152f5',

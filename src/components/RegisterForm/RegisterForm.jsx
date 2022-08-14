@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux/es/exports';
 import { registerUser } from 'redux/auth/authOperations';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
-export function RegisterForm() {
+export default function RegisterForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

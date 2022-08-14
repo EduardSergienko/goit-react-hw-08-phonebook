@@ -3,6 +3,7 @@ import styles from './contactForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { addContacts } from 'redux/contacts/contactsOperations';
 import { getContacts } from 'redux/store';
+import TextField from '@mui/material/TextField';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -47,8 +48,10 @@ export default function ContactForm() {
   return (
     <form className={styles.contactForm} onSubmit={onSubmiteForm}>
       <label>
-        <p className={styles.contactForm__label}>Name</p>
-        <input
+        {/* <p className={styles.contactForm__label}>Name</p> */}
+        <TextField
+          label="Name"
+          variant="standard"
           className={styles.contactForm__input}
           type="text"
           name="name"
@@ -57,11 +60,16 @@ export default function ContactForm() {
           required
           value={name}
           onChange={onInputtype}
+          sx={{
+            marginBottom: 5,
+          }}
         />
       </label>
       <label>
-        <p className={styles.contactForm__label}>Phone</p>
-        <input
+        {/* <p className={styles.contactForm__label}>Phone</p> */}
+        <TextField
+          label="Phone"
+          variant="standard"
           className={styles.contactForm__input}
           type="tel"
           name="number"
@@ -70,6 +78,9 @@ export default function ContactForm() {
           required
           value={number}
           onChange={onInputtype}
+          sx={{
+            marginBottom: 5,
+          }}
         />
       </label>
       <button className={styles.contactForm__btn} type="submit">
