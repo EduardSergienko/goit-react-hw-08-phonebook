@@ -1,4 +1,3 @@
-import styles from 'components/Filter/filter.module.scss';
 import { changeFilter } from 'redux/contacts/contactsSlice';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { getValue, getContacts } from '../../redux/store';

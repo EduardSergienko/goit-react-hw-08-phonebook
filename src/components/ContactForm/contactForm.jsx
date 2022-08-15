@@ -43,6 +43,7 @@ export default function ContactForm() {
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
+      setLoading(false);
       return alert(`${name} is already in contacts`);
     }
 
