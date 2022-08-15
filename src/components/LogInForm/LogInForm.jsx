@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 import { logInUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import { Notify } from 'notiflix';
+
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -25,13 +25,8 @@ export default function LoginForm() {
   };
   const onFormSubmit = e => {
     e.preventDefault();
-    if (email && password === '') {
-      return Notify.warning('Please, fill in all the fields ');
-    }
-    dispatch(logInUser({ email, password }));
 
-    setEmail('');
-    setPassword('');
+    dispatch(logInUser({ email, password }));
   };
   return (
     <Box
@@ -39,7 +34,7 @@ export default function LoginForm() {
       sx={{
         width: 300,
         margin: '0 auto',
-        paddingTop: 5,
+        paddingTop: '100px',
         textAlign: 'center',
       }}
       onSubmit={onFormSubmit}
@@ -55,6 +50,7 @@ export default function LoginForm() {
         value={email}
         autoComplete="off"
         onChange={handleChange}
+        required={true}
       />
       <TextField
         sx={{
@@ -67,6 +63,7 @@ export default function LoginForm() {
         autoComplete="off"
         value={password}
         onChange={handleChange}
+        required={true}
       />
       <Button
         sx={{

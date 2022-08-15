@@ -6,25 +6,24 @@ import { AppBar } from './AppBar/AppBar';
 import { MainNav } from './MainNav/MainNav';
 import { AuthNav } from './AuthNav/AuthNav';
 import { UserMenu } from './UserMenu/UserMenu';
-import Contacts from './Contacts/Contacts';
-import RegisterForm from './RegisterForm/RegisterForm';
-import LoginForm from './LogInForm/LogInForm';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-// import PrivateRoute from './PrivateRoures/PrivateRoutes';
-// import PublicRoute from './PublicRoutes/PublicRoutes';
-// import Home from './Home/Home';
+import PrivateRoute from './PrivateRoures/PrivateRoutes';
+import PublicRoute from './PublicRoutes/PublicRoutes';
+
 import { lazy, Suspense } from 'react';
 const Home = lazy(() => import('./Home/Home' /* webpackChunkName: "Home" */));
-const PrivateRoute = lazy(() =>
-  import('./PrivateRoures/PrivateRoutes' /* webpackChunkName: "PrivateRoute" */)
+const Contacts = lazy(() =>
+  import('./Contacts/Contacts' /* webpackChunkName: "Contacts" */)
 );
-const PublicRoute = lazy(() =>
-  import('./PublicRoutes/PublicRoutes' /* webpackChunkName: "PublicRoute" */)
+const RegisterForm = lazy(() =>
+  import('./RegisterForm/RegisterForm' /* webpackChunkName: "RegisterForm" */)
 );
-
+const LoginForm = lazy(() =>
+  import('./LogInForm/LogInForm' /* webpackChunkName: "LoginForm" */)
+);
 export default function App() {
   // const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(getIsLoggedIn);

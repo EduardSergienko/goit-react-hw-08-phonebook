@@ -1,6 +1,7 @@
+import styles from './RegisterForm.module.scss';
 import TextField from '@mui/material/TextField';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux/es/exports';
 import { registerUser } from 'redux/auth/authOperations';
 import Box from '@mui/material/Box';
@@ -30,15 +31,8 @@ export default function RegisterForm() {
   };
   const onFormSubmit = e => {
     e.preventDefault();
-    if (name && email && password === '') {
-      console.log(name);
-      console.log(email);
-      return Notify.warning('Please, fill in all the fields ');
-    }
+
     dispatch(registerUser({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
   };
 
   return (
@@ -47,11 +41,18 @@ export default function RegisterForm() {
       sx={{
         width: 300,
         margin: '0 auto',
-        paddingTop: 5,
+        paddingTop: '100px',
         textAlign: 'center',
       }}
       onSubmit={onFormSubmit}
     >
+      <div className={styles.signWrap}>
+        <h2 className={styles.signUpTitle}>Sign Up</h2>
+        <p className={styles.signUpText}>Already a mamber?</p>
+        <Link to="/login" className={styles.signUpLink}>
+          Log In
+        </Link>
+      </div>
       <TextField
         sx={{
           marginBottom: 2,
@@ -63,6 +64,7 @@ export default function RegisterForm() {
         autoComplete="off"
         onChange={handleChange}
         value={name}
+        required={true}
       />
       <TextField
         sx={{
@@ -70,11 +72,12 @@ export default function RegisterForm() {
           width: 300,
         }}
         label="Email"
-        type="text"
+        type="email"
         name="email"
         autoComplete="off"
         value={email}
         onChange={handleChange}
+        required={true}
       />
       <TextField
         sx={{
@@ -87,9 +90,11 @@ export default function RegisterForm() {
         autoComplete="off"
         value={password}
         onChange={handleChange}
+        required={true}
       />
       <Button
         sx={{
+          width: '100%',
           fontWeight: 600,
           color: 'cornflowerblue',
         }}
