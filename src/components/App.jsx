@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import { getIsLoading, getIsRefreshed } from 'redux/store';
+import { getIsRefreshed } from 'redux/store';
 import { useSelector } from 'react-redux';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
+// import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { AppBar } from './AppBar/AppBar';
 import { MainNav } from './MainNav/MainNav';
 import { AuthNav } from './AuthNav/AuthNav';
@@ -26,7 +26,7 @@ const PublicRoute = lazy(() =>
 );
 
 export default function App() {
-  const isLoading = useSelector(getIsLoading);
+  // const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isRefreshed = useSelector(getIsRefreshed);
   const dispatch = useDispatch();
@@ -70,12 +70,12 @@ export default function App() {
             />
           </Routes>
         </Suspense>
-        {isLoading
+        {/* {isLoading
           ? Loading.circle({
               svgColor: '#3152f5',
               backgroundColor: 'rgba(0,0,0,0.2)',
             })
-          : Loading.remove()}
+          : Loading.remove()} */}
       </>
     )
   );

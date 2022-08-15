@@ -1,15 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './contactForm.module.scss';
 import { useDispatch, useSelector } from 'react-redux/es/exports';
 import { addContacts } from 'redux/contacts/contactsOperations';
 import { getContacts } from 'redux/store';
 import TextField from '@mui/material/TextField';
-
+import LoadingButton from '@mui/lab/LoadingButton';
+import { getIsLoading } from 'redux/store';
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  // const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const contactsItems = useSelector(getContacts);
+  const stateIsLoading = useSelector(getIsLoading);
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (!stateIsLoading) {
+      setLoading(false);
+    }
+  }, [stateIsLoading]);
 
   const onInputtype = e => {
     const { name, value } = e.currentTarget;
@@ -27,16 +37,16 @@ export default function ContactForm() {
   };
   const onSubmiteForm = e => {
     e.preventDefault();
-
+    setLoading(true);
     if (
       contactsItems.some(
         contact => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
       return alert(`${name} is already in contacts`);
-    } else {
-      dispatch(addContacts({ name, number }));
     }
+
+    dispatch(addContacts({ name, number }));
 
     reset();
   };
@@ -45,10 +55,10 @@ export default function ContactForm() {
     setName('');
     setNumber('');
   };
+
   return (
     <form className={styles.contactForm} onSubmit={onSubmiteForm}>
       <label>
-        {/* <p className={styles.contactForm__label}>Name</p> */}
         <TextField
           label="Name"
           variant="standard"
@@ -66,7 +76,6 @@ export default function ContactForm() {
         />
       </label>
       <label>
-        {/* <p className={styles.contactForm__label}>Phone</p> */}
         <TextField
           label="Phone"
           variant="standard"
@@ -83,9 +92,20 @@ export default function ContactForm() {
           }}
         />
       </label>
-      <button className={styles.contactForm__btn} type="submit">
+
+      <LoadingButton
+        sx={{
+          width: 100,
+          fontSize: 11,
+          fontWeight: 600,
+          color: 'cornflowerblue',
+        }}
+        className={styles.contactForm__btn}
+        type="submit"
+        loading={loading}
+      >
         Add Contact
-      </button>
+      </LoadingButton>
     </form>
   );
 }
