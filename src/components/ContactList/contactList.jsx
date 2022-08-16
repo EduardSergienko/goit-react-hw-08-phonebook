@@ -1,7 +1,6 @@
 import styles from 'components/ContactList/contactList.module.scss';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { ContactItem } from 'components/ContactItem/contactItem';
-
 import { getValue, getContacts } from '../../redux/store';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/contacts/contactsOperations';

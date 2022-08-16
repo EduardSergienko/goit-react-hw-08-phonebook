@@ -17,16 +17,24 @@ export const authSlice = createSlice({
     isRefreshed: false,
   },
   extraReducers: {
+    [registerUser.pending]: () => {
+      Loading.circle({
+        svgColor: '#3152f5',
+        backgroundColor: 'rgba(0,0,0,0.2)',
+      });
+    },
     [registerUser.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      Loading.remove();
     },
     [registerUser.rejected]: (state, _) => {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
       Notify.failure('Oops, something wrong, try again');
+      Loading.remove();
     },
     [logInUser.pending]: () => {
       Loading.circle({
@@ -45,6 +53,7 @@ export const authSlice = createSlice({
       state.token = null;
       state.isLoggedIn = false;
       Notify.failure('Oops, something wrong, try again');
+      Loading.remove();
     },
     [logOutUser.pending]: () => {
       Loading.circle({
@@ -62,12 +71,18 @@ export const authSlice = createSlice({
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshed = false;
+      Loading.remove();
     },
     [fetchCurrentUser.pending]: (state, _) => {
       state.isRefreshed = true;
+      Loading.circle({
+        svgColor: '#3152f5',
+        backgroundColor: 'rgba(0,0,0,0.2)',
+      });
     },
     [fetchCurrentUser.rejected]: (state, _) => {
       state.isRefreshed = false;
+      Loading.remove();
     },
   },
 });

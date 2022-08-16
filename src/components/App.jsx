@@ -24,7 +24,6 @@ const LoginForm = lazy(() =>
   import('./LogInForm/LogInForm' /* webpackChunkName: "LoginForm" */)
 );
 export default function App() {
-  // const isLoading = useSelector(getIsLoading);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isRefreshed = useSelector(getIsRefreshed);
   const dispatch = useDispatch();
