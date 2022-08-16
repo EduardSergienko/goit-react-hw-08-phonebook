@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/Home.60fe203d.chunk.css","mappings":"AAAA,wBACE,cAEF,sBAIE,mBAFA,aADA,aAEA,sBACA","sources":["components/Home/Home.module.scss"],"sourcesContent":[".homeTitle {\n  color: #3e403f;\n}\n.homeWrap {\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n"],"names":[],"sourceRoot":""}

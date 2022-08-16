@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[268],{2013:function(e,t,o){o.r(t),o.d(t,{default:function(){return n}});var r="Home_homeTitle__+SKj1",a="Home_homeWrap__c6D2Y",c=o(3329);function n(){return(0,c.jsx)("div",{className:a,children:(0,c.jsx)("h2",{className:r,children:"Welcome to the best phonebook app ever"})})}}}]);
+//# sourceMappingURL=Home.d2d1f4dc.chunk.js.map
