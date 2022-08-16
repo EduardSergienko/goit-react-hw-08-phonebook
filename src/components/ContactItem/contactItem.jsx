@@ -21,7 +21,7 @@ export const ContactItem = ({ name, number, itemId }) => {
   };
   return (
     <li className={styles.contactList__item}>
-      <p className={styles.contactList__name}> {name}: </p>
+      <p className={styles.contactList__name}> {name} </p>
       <p className={styles.contactList__number}>{number}</p>
       <LoadingButton
         className={styles.contactList__btn}
