@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { getIsRefreshed } from 'redux/store';
 import { useSelector } from 'react-redux';
-// import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import { AppBar } from './AppBar/AppBar';
 import { MainNav } from './MainNav/MainNav';
 import { AuthNav } from './AuthNav/AuthNav';
@@ -69,12 +68,6 @@ export default function App() {
             />
           </Routes>
         </Suspense>
-        {/* {isLoading
-          ? Loading.circle({
-              svgColor: '#3152f5',
-              backgroundColor: 'rgba(0,0,0,0.2)',
-            })
-          : Loading.remove()} */}
       </>
     )
   );
