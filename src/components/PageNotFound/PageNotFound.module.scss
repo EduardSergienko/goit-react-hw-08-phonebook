@@ -1,0 +1,16 @@
+.pageNotFoundWrap {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.goHomeLink {
+  text-decoration: none;
+  font-weight: 600;
+  color: cornflowerblue;
+}
+.pageNotFoundTitle {
+  margin-bottom: 15px;
+  color: #3e403f;
+}

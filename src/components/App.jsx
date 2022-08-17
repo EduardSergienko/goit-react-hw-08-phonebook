@@ -13,6 +13,7 @@ import PrivateRoute from './PrivateRoures/PrivateRoutes';
 import PublicRoute from './PublicRoutes/PublicRoutes';
 
 import { lazy, Suspense } from 'react';
+import PageNotFound from './PageNotFound/PageNotFound';
 const Home = lazy(() => import('./Home/Home' /* webpackChunkName: "Home" */));
 const Contacts = lazy(() =>
   import('./Contacts/Contacts' /* webpackChunkName: "Contacts" */)
@@ -65,6 +66,7 @@ export default function App() {
                 </PublicRoute>
               }
             />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </Suspense>
       </>
